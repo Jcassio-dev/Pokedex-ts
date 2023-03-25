@@ -1,19 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { listPokemons, PokemonListInterface } from '../pokemon/services/listPokemons';
-import { GetPokemonsDetails } from '../pokemon/services/getPokemonsDetails';
-import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail';
+import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
+import { PokemonDetail } from '../../interfaces/PokemonDetail';
 
-import { AppBarButton } from '../components/AppBar';
+import { AppBarButton } from '../../components/AppBar';
 
 import Container from '@mui/material/Container';
 import {Box, Grid} from "@mui/material"
  
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
 

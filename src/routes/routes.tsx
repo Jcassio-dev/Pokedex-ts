@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Routes, Route } from "react-router-dom"
 
-import { Pokedex } from '../pokedex/Pokedex';
-import { PokemonDetails } from '../pokemon/PokemonDetails';
+import { Pokedex } from '../pages/pokedex/Pokedex';
+import { PokemonDetails } from '../pages/pokemon/PokemonDetails';
 
 interface RoutesProps {
     

@@ -3,19 +3,15 @@ import { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { listPokemons, PokemonListInterface } from '../pokemon/services/listPokemons';
-import { GetPokemonsDetails } from '../pokemon/services/getPokemonsDetails';
-import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail';
+import { listPokemons, PokemonListInterface } from '../../services/listPokemons';
+import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
+import { PokemonDetail } from '../../interfaces/PokemonDetail';
 
-import { AppBarButton } from '../components/AppBar';
+import { AppBarButton } from '../../components/AppBar';
+import { PokeDexCard } from '../../components/PokeDexCard';
 
 import Container from '@mui/material/Container';
 import {Box, Grid} from "@mui/material"
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 
 
@@ -56,24 +52,12 @@ export const Pokedex: React.FC<PokedexProps> = () => {
         <div>
             <AppBarButton name="pokedex"/>
             <Container maxWidth="lg">
-            <Box mt={2}>
+            <Box mt={3}>
                 <Grid container spacing={2}>
             {pokemons && pokemons.map((pokemon, index) => (
-                <div key={index}>
                 <Grid item xs={6} lg={3}> 
-                <Card sx={{ minWidth: 275 }}>
-                    <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                             {pokemon.name}
-                        </Typography>
-        
-                    </CardContent>
-                    <CardActions>
-                        <Button onClick={()=> handleClick(pokemon)}size="small">Abrir</Button>
-                    </CardActions>
-                     </Card>
+                    <PokeDexCard/>
                 </Grid>
-                </div>
             ))}
         
                     
