@@ -1,20 +1,24 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { listPokemons, PokemonListInterface } from '../pokemon/services/listPokemons';
 import { GetPokemonsDetails } from '../pokemon/services/getPokemonsDetails';
 import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail';
 
 import { AppBarButton } from '../components/AppBar';
-import { BasicCard } from '../components/Card';
 
 import Container from '@mui/material/Container';
 import {Box, Grid} from "@mui/material"
- 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+
+
 
 
 interface PokedexProps {
@@ -27,6 +31,11 @@ export const Pokedex: React.FC<PokedexProps> = () => {
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined);
     const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
     
+    const navigate = useNavigate()
+
+    function handleClick(pokemon: PokemonListInterface){
+        navigate(`/pokemon/${pokemon.name}`)
+    }
 
     useEffect(()=> {
         listPokemons()
@@ -45,7 +54,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
 
     return (
         <div>
-            <AppBarButton/>
+            <AppBarButton name="pokedex"/>
             <Container maxWidth="lg">
             <Box mt={2}>
                 <Grid container spacing={2}>
@@ -60,9 +69,9 @@ export const Pokedex: React.FC<PokedexProps> = () => {
         
                     </CardContent>
                     <CardActions>
-                        <Button onClick={()=> setSelectedPokemon(pokemon)}size="small">Abrir</Button>
+                        <Button onClick={()=> handleClick(pokemon)}size="small">Abrir</Button>
                     </CardActions>
-    </Card>
+                     </Card>
                 </Grid>
                 </div>
             ))}
@@ -73,6 +82,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
 
             {selectedPokemon ? <h2>Pokemon Selecionado: {selectedPokemon.name}</h2> : ''}
             {JSON.stringify(selectedPokemonDetails, undefined, 2)}
+
             </Box>
             </Container>
         </div>

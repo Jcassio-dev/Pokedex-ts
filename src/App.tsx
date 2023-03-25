@@ -1,12 +1,11 @@
 import React from "react"
-import { Pokedex } from "./pokedex/Pokedex"
+
+import { Routes } from "./routes"
 
 const App: React.FC = () => {
 
-  
   return(
-    <Pokedex>
-    </Pokedex>
+      <Routes />
   )
 
 }
