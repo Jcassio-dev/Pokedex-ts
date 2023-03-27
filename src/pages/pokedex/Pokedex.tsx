@@ -24,10 +24,10 @@ export const Pokedex: React.FC<PokedexProps> = () => {
     //const [pokemons, setPokemons] = useState<Pokemo[]>([]);
 
     const { data } = useQuery(`listPokemons`, listPokemons);
-    
+
     return (
         <div>
-            <AppBarButton name="pokedex"/>
+            <AppBarButton pokeName="pokedex"/>
             <Container maxWidth="lg">
             <Box mt={3}>
                 <Grid container spacing={2}>

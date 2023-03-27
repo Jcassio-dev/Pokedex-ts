@@ -36,11 +36,11 @@ export const PokemonDetails: React.FC<PokemonDetails> = () => {
 
     return (
         <div>
-            <AppBarButton name={name}/>
+            <AppBarButton pokeName={name}/>
             <Container maxWidth="lg">
             <Box mt={2}> 
             <img width="100%" height="600px"src={selectedPokemonDetails?.sprites.front_default} alt={`${name} de frente`}/>
-            <h1>{selectedPokemonDetails?.name}</h1>
+            <h1>{selectedPokemonDetails?.id} {selectedPokemonDetails?.name}</h1>
             <h2>{selectedPokemonDetails?.types.map(({type}, index) => <p key={index}>{type.name}</p>)}</h2>
             <h2>{selectedPokemonDetails?.species.name}</h2>
             <h2>{selectedPokemonDetails?.height}</h2>
