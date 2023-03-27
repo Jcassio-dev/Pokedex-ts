@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+
 
 import { listPokemons, PokemonListInterface } from '../../services/listPokemons';
 import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
@@ -23,15 +23,11 @@ interface PokedexProps {
 
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPokemons] = useState<PokemonListInterface[]>([]);
+    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined);
     const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
-    
-    const navigate = useNavigate()
 
-    function handleClick(pokemon: PokemonListInterface){
-        navigate(`/pokemon/${pokemon.name}`)
-    }
+   
 
     useEffect(()=> {
         listPokemons()
@@ -56,7 +52,7 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                 <Grid container spacing={2}>
             {pokemons && pokemons.map((pokemon, index) => (
                 <Grid item xs={6} lg={3}> 
-                    <PokeDexCard/>
+                    <PokeDexCard pokemon={pokemon}/>
                 </Grid>
             ))}
         

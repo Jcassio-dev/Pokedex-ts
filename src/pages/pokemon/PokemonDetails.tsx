@@ -39,9 +39,13 @@ export const PokemonDetails: React.FC<PokemonDetails> = () => {
             <AppBarButton name={name}/>
             <Container maxWidth="lg">
             <Box mt={2}> 
-            <img src={selectedPokemonDetails?.sprites.front_default} alt={`${name} de frente`}/>
-
-            {JSON.stringify(selectedPokemonDetails, undefined, 2)}
+            <img width="100%" height="600px"src={selectedPokemonDetails?.sprites.front_default} alt={`${name} de frente`}/>
+            <h1>{selectedPokemonDetails?.name}</h1>
+            <h2>{selectedPokemonDetails?.types.map(type => <p>{type.type.name}</p>)}</h2>
+            <h2>{selectedPokemonDetails?.species.name}</h2>
+            <h2>{selectedPokemonDetails?.height}</h2>
+            <h2>{selectedPokemonDetails?.weight}</h2>
+            <h2>{selectedPokemonDetails?.abilities.map(ability => <p>{ability.ability.name}</p>)}</h2>
             </Box>
             </Container>
         </div>
