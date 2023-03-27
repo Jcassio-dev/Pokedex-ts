@@ -13,21 +13,21 @@ import {Box, Grid} from "@mui/material"
 import { useQuery } from 'react-query'
 
 
-
-
 interface PokedexProps {
     
 }
 
 
+
+
 export const Pokedex: React.FC<PokedexProps> = () => {
-    //const [pokemons, setPokemons] = useState<Pokemo[]>([]);
+    const [search, setSearch] = useState<string>('')
 
     const { data, isLoading, isRefetching } = useQuery(`listPokemons`, listPokemons);
-
+    
     return (
         <div>
-            <AppBarButton pokeName="pokedex"/>
+            <AppBarButton pokeName="pokedex" />
             {isRefetching && <progress max="100"/>}
             <Container maxWidth="lg">
             {!isLoading ? (

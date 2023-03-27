@@ -5,7 +5,7 @@ interface PokeBar{
   pokeName: string | undefined;
 }
 interface QueryParams{
-  name: string
+  name: string | undefined;
 }
 
 export const AppBarButton: React.FC<PokeBar> = ({pokeName}) => {
@@ -13,8 +13,18 @@ export const AppBarButton: React.FC<PokeBar> = ({pokeName}) => {
   const { name } = useParams<QueryParams>();
   return (
     <C.Container>
-            {name ? <button onClick={() => navigate(-1)}>voltar</button> : <button>pesquisar</button>}
-            <h1>{name}</h1>
+            {name ? (
+            <>
+            <button onClick={() => navigate(-1)}>voltar</button>
+            <h1>{pokeName}</h1>
+            </>
+            ) : (
+            <>
+            <button>pesquisar</button>
+            <h1>{pokeName}</h1>
+            </>
+            )}
+            
     </C.Container>
   );
 }
