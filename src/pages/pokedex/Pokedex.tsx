@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 
 
 import { listPokemons, PokemonListInterface } from '../../services/listPokemons';
-import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
-import { PokemonDetail } from '../../interfaces/PokemonDetail';
 
 import { AppBarButton } from '../../components/AppBar';
 import { PokeDexCard } from '../../components/PokeDexCard';
@@ -23,9 +21,7 @@ interface PokedexProps {
 
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
-    const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined);
-    const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
+    const [pokemons, setPokemons] = useState<Pokemo[]>([]);
 
    
 
@@ -35,14 +31,6 @@ export const Pokedex: React.FC<PokedexProps> = () => {
 
     }, [])
 
-    useEffect(() => {
-       if(!selectedPokemon) return;
-
-       GetPokemonsDetails(selectedPokemon.name)
-       .then((response) => setSelectedPokemonDetails(response))
-       
-
-    }, [selectedPokemon]);
 
     return (
         <div>
@@ -51,17 +39,13 @@ export const Pokedex: React.FC<PokedexProps> = () => {
             <Box mt={3}>
                 <Grid container spacing={2}>
             {pokemons && pokemons.map((pokemon, index) => (
-                <Grid item xs={6} lg={3}> 
+                <Grid item xs={6} lg={3} key={index}> 
                     <PokeDexCard pokemon={pokemon}/>
                 </Grid>
             ))}
         
                     
                 </Grid>
-            pokemons: 
-
-            {selectedPokemon ? <h2>Pokemon Selecionado: {selectedPokemon.name}</h2> : ''}
-            {JSON.stringify(selectedPokemonDetails, undefined, 2)}
 
             </Box>
             </Container>
