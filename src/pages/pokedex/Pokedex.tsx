@@ -23,13 +23,15 @@ interface PokedexProps {
 export const Pokedex: React.FC<PokedexProps> = () => {
     //const [pokemons, setPokemons] = useState<Pokemo[]>([]);
 
-    const { data } = useQuery(`listPokemons`, listPokemons);
+    const { data, isLoading, isRefetching } = useQuery(`listPokemons`, listPokemons);
 
     return (
         <div>
             <AppBarButton pokeName="pokedex"/>
+            {isRefetching && <progress max="100"/>}
             <Container maxWidth="lg">
-            <Box mt={3}>
+            {!isLoading ? (
+                <Box mt={3}>
                 <Grid container spacing={2}>
             {data && data?.results.map((pokemon, index) => (
                 <Grid item xs={6} lg={3} key={index}> 
@@ -41,6 +43,10 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                 </Grid>
 
             </Box>
+            ):
+            <div>Carregando</div>
+        }
+            
             </Container>
         </div>
     );

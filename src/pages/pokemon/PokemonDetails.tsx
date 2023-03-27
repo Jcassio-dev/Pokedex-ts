@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
-import { PokemonDetail } from '../../interfaces/PokemonDetail';
 
 import { AppBarButton } from '../../components/AppBar';
 
@@ -9,6 +7,7 @@ import Container from '@mui/material/Container';
 import {Box, Grid} from "@mui/material"
  
 import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 
 interface PokemonDetails {
@@ -21,31 +20,24 @@ interface PokemonQueryParams {
 
 
 export const PokemonDetails: React.FC<PokemonDetails> = () => {
-    const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail | undefined>(undefined);
-
     const { name } = useParams<PokemonQueryParams>()
 
-    useEffect(() => {
-       if(!name) return;
 
-       GetPokemonsDetails(name)
-       .then((response) => setSelectedPokemonDetails(response))
-       
+    const { data } = useQuery(`getPokemonsDetails-${name}`, () => GetPokemonsDetails(name))
 
-    }, [name]);
 
     return (
         <div>
             <AppBarButton pokeName={name}/>
             <Container maxWidth="lg">
             <Box mt={2}> 
-            <img width="100%" height="600px"src={selectedPokemonDetails?.sprites.front_default} alt={`${name} de frente`}/>
-            <h1>{selectedPokemonDetails?.id} {selectedPokemonDetails?.name}</h1>
-            <h2>{selectedPokemonDetails?.types.map(({type}, index) => <p key={index}>{type.name}</p>)}</h2>
-            <h2>{selectedPokemonDetails?.species.name}</h2>
-            <h2>{selectedPokemonDetails?.height}</h2>
-            <h2>{selectedPokemonDetails?.weight}</h2>
-            <h2>{selectedPokemonDetails?.abilities.map(({ability}, index) => <p key={index}>{ability.name}</p>)}</h2>
+            <img width="100%" height="600px"src={data?.sprites.front_default} alt={`${name} de frente`}/>
+            <h1>{data?.id} {data?.name}</h1>
+            <h2>{data?.types.map(({type}, index) => <p key={index}>{type.name}</p>)}</h2>
+            <h2>{data?.species.name}</h2>
+            <h2>{data?.height}</h2>
+            <h2>{data?.weight}</h2>
+            <h2>{data?.abilities.map(({ability}, index) => <p key={index}>{ability.name}</p>)}</h2>
             </Box>
             </Container>
         </div>
