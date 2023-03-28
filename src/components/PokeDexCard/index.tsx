@@ -1,7 +1,9 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { PokemonDetail } from '../../interfaces/PokemonDetail';
+import { FavoriteContext } from '../../hooks/FavoriteContext';
 
 import * as C from "./styles"
 
@@ -13,10 +15,16 @@ interface PokeDexCard {
 
 export const PokeDexCard: React.FC<PokeDexCard> = ({pokemon}) => {
     const navigate = useNavigate()
+    const {favorites, setFavorites}= useContext(FavoriteContext)
 
     function handleClick(pokemon: PokemonDetail){
         navigate(`/pokemon/${pokemon.name}`)
     }
+
+    const  addPokemonToFavorite = (pokemon: PokemonDetail) => {
+        setFavorites({...favorites, pokemon})
+      }
+      
 
     return (
         <C.Container onClick={() => handleClick(pokemon)}>

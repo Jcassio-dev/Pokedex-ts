@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { QueryClientProvider, QueryClient } from 'react-query'
+import { FavoriteProvider } from './hooks/FavoriteContext'
 import { Routes } from './routes'
 import GlobalStyles from './styles/GlobalStyles'
 
@@ -20,8 +21,10 @@ const queryClient= new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+    <FavoriteProvider>
      <GlobalStyles />
      <Routes />
+     </FavoriteProvider>
      </QueryClientProvider>
   </React.StrictMode>
 )
