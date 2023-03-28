@@ -33,6 +33,22 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
+        position: relative;
+    }
+    button span{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+
+        font-size: 10px;
+        padding: 5px;
+        border-radius: 50px;
+
+        background-color: white;
+        color: red;
+
+
     }
 
 

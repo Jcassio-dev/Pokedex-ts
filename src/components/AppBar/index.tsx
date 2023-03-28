@@ -35,7 +35,7 @@ export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPag
             null
             )}
             <h1>{pokeName}</h1>
-            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}{FavoritesNumber}</button>
+            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}<span>{FavoritesNumber}</span></button>
             
     </C.Container>
   );
