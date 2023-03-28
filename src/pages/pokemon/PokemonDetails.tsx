@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
 
 import { AppBarButton } from '../../components/AppBar';
@@ -9,7 +9,8 @@ import {Box, Grid} from "@mui/material"
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import {TbPokeball} from 'react-icons/tb'
+import {AiOutlineHeart} from 'react-icons/ai'
+import { FavoriteContext } from '../../hooks/FavoriteContext';
 
 
 interface PokemonDetails {
@@ -23,14 +24,15 @@ interface PokemonQueryParams {
 
 export const PokemonDetails: React.FC<PokemonDetails> = () => {
     const { name } = useParams<PokemonQueryParams>()
-
+    
+    const { favorites } = useContext(FavoriteContext)
 
     const { data } = useQuery(`getPokemonsDetails-${name}`, () => GetPokemonsDetails(name))
 
 
     return (
         <div>
-            <AppBarButton pokeName={name} icon={TbPokeball} returnPage/>
+            <AppBarButton pokeName={name} icon={AiOutlineHeart} NavigatePage="/favorites" FavoritesNumber={favorites.length} returnPage/>
             <Container maxWidth="lg"> 
             <img width="100%" height="600px"src={data?.sprites.front_default} alt={`${name} de frente`}/>          
             <h1>{data?.id} {data?.name}</h1>
