@@ -8,16 +8,16 @@ interface PokeBar{
   returnPage?: boolean;
   icon?: any;
   NavigatePage?: string;
+  FavoritesNumber?: number;
   
 }
 interface QueryParams{
   name: string | undefined;
 }
 
-export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPage, NavigatePage}) => {
+export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPage, NavigatePage, FavoritesNumber}) => {
   const navigate = useNavigate();
   
-  //const { name } = useParams<QueryParams>();
 
   function handleClick(){
     navigate("/")
@@ -35,7 +35,7 @@ export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPag
             null
             )}
             <h1>{pokeName}</h1>
-            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}</button>
+            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}{FavoritesNumber}</button>
             
     </C.Container>
   );
