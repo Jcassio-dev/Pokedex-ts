@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { GetPokemonsDetails } from '../../services/getPokemonsDetails';
 
 import { AppBarButton } from '../../components/AppBar';
+import { FavoriteButton } from '../../components/FavoriteButton';
+
+import { FavoriteContext } from '../../hooks/FavoriteContext';
 
 import Container from '@mui/material/Container';
 import {Box, Grid} from "@mui/material"
@@ -9,8 +12,8 @@ import {Box, Grid} from "@mui/material"
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import {AiOutlineHeart} from 'react-icons/ai'
-import { FavoriteContext } from '../../hooks/FavoriteContext';
+import { AiOutlineHeart } from 'react-icons/ai'
+
 
 
 interface PokemonDetails {
@@ -29,11 +32,12 @@ export const PokemonDetails: React.FC<PokemonDetails> = () => {
 
     const { data } = useQuery(`getPokemonsDetails-${name}`, () => GetPokemonsDetails(name))
 
-
+    console.log(data)
     return (
         <div>
             <AppBarButton pokeName={name} icon={AiOutlineHeart} NavigatePage="/favorites" FavoritesNumber={favorites.length} returnPage/>
             <Container maxWidth="lg"> 
+            <FavoriteButton pokemon={data}/>
             <img width="100%" height="600px"src={data?.sprites.front_default} alt={`${name} de frente`}/>          
             <h1>{data?.id} {data?.name}</h1>
             <h2>{data?.types.map(({type}, index) => <p key={index}>{type.name}</p>)}</h2>

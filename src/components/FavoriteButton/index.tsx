@@ -21,10 +21,10 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({pokemon}) => {
       };
 
     const removePokemonFromFavorite = () => {
-        setFavorites(prevState => prevState.filter((poke) => poke.name !== pokemon.name));
+        setFavorites(prevState => prevState.filter((poke) => poke.name !== pokemon?.name));
     };
 
-    const isFavorite = favorites.some((poke) => poke.name === pokemon.name);
+    const isFavorite = favorites.some((poke) => poke.name === pokemon?.name);
     return (
         <C.Container>
             {isFavorite ? 
