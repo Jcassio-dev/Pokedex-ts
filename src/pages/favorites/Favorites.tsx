@@ -20,6 +20,7 @@ export const Favorites: React.FC<FavoritesProps> = () => {
         <div>
             <AppBarButton icon={AiFillHeart} pokeName="Favorites" returnPage/>
             <Container maxWidth="lg">
+                <h1>Favoritos</h1>
                 <Grid container spacing={2}>
                 { favorites?.map((pokemon, index) => (
                     <Grid item xs={6} lg={3} key={index}> 

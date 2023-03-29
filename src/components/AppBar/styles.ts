@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
+    height: 105px;
     padding: 20px;
-    background-color: red;
 
     display: flex;
     align-items: center;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 
     margin-bottom: 5px;
 
-    color: white;
+    gap: 20px;
 
     h1{
         font-size: 30px;
@@ -28,7 +28,7 @@ export const Container = styled.div`
         cursor: pointer;
 
         font-size: 32px;
-        color: white;
+        color: red;
 
         display: flex;
         align-items: center;

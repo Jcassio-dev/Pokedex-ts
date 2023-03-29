@@ -30,9 +30,10 @@ export const Pokedex: React.FC<PokedexProps> = () => {
     
     return (
         <div>
-            <AppBarButton pokeName="PokeDex" icon={AiOutlineHeart} NavigatePage="/favorites" FavoritesNumber={favorites.length}/>
+            <AppBarButton pokeName="PokeDex" icon={AiOutlineHeart} NavigatePage="/favorites"/>
             {isRefetching && <progress max="100"/>}
             <Container maxWidth="lg">
+            <h1>PokeDex</h1>
             {!isLoading ? (
                 <Grid container spacing={2}>
             {data && data?.results.map((pokemon, index) => (

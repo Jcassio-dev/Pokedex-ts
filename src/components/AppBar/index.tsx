@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import * as C from "./styles"
-import { AiOutlineArrowLeft} from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineSearch} from 'react-icons/ai'
+import { Input } from "../Input";
+import { FavoriteContext } from '../../hooks/FavoriteContext';
 
 
 interface PokeBar{
@@ -8,16 +11,13 @@ interface PokeBar{
   returnPage?: boolean;
   icon?: any;
   NavigatePage?: string;
-  FavoritesNumber?: number;
   
-}
-interface QueryParams{
-  name: string | undefined;
 }
 
-export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPage, NavigatePage, FavoritesNumber}) => {
+
+export const AppBarButton: React.FC<PokeBar> = ({ icon: Icon, returnPage, NavigatePage}) => {
   const navigate = useNavigate();
-  
+  const { favorites } = useContext(FavoriteContext)
 
   function handleClick(){
     navigate("/")
@@ -32,10 +32,9 @@ export const AppBarButton: React.FC<PokeBar> = ({pokeName, icon: Icon, returnPag
             <button onClick={() => handleClick()}><AiOutlineArrowLeft/></button>
             </>
             ) : (
-            null
+            <Input icon={AiOutlineSearch} placeholder="Pesquise o pókemon aqui"/>
             )}
-            <h1>{pokeName}</h1>
-            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}<span>{FavoritesNumber}</span></button>
+            <button onClick={() => navigate(NavigatePage)}>{Icon && <Icon />}<span>{favorites.length}</span></button>
             
     </C.Container>
   );
