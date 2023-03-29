@@ -23,18 +23,16 @@ export const PokeDexCard: React.FC<PokeDexCard> = ({pokemon}) => {
     return (
         <C.Container>
             <div onClick={() => handleClick(pokemon)} className="PokeInfo">
+            <C.Header><span>#{pokemon.id}</span> <h1>{pokemon.name}</h1> <FavoriteButton pokemon={pokemon}/></C.Header>
+            <C.Content>
             <div>
-            <h1>#{pokemon.id} {pokemon.name}</h1>
             {
                 pokemon.types.map(({type}, index) => <h2 key={index}>{type.name}</h2> )
             }
             </div>
             <img src={pokemon.sprites.front_default} alt={`${pokemon.name} De frente`}/>
+            </C.Content>
             </div>
-
-            <FavoriteButton pokemon={pokemon}/>
-           
-            
         </C.Container>
     );
 };

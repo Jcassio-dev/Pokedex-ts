@@ -19,9 +19,32 @@ export const Container = styled.div`
 
     .PokeInfo{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 250px;
     }
 
-        
+    
 `
+
+export const Header = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    span{
+        font-size: 20px;
+        color: gray;
+    }
+    h1{
+        font-size: 25px;
+    }
+`
+export const Content = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+`
+
